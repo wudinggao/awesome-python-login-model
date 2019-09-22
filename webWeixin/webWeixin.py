@@ -16,7 +16,7 @@ update_time:2019-3-6
 
 session = requests.session()
 headers = {
-    'User-Agent': 'Mozilla/5.0 (Windows NT 5.1; rv:33.0) Gecko/20100101 Firefox/33.0'
+    'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36'
 }
 
 QRImgPath = os.path.split(os.path.realpath(__file__))[0] + os.sep + 'webWeixinQr.jpg'
@@ -131,21 +131,6 @@ def login():
 
     response = session.get(redirect_uri)
     data = response.content.decode('utf-8')
-
-    # print(data)
-
-    '''
-        <error>
-            <ret>0</ret>
-            <message>OK</message>
-            <skey>xxx</skey>
-            <wxsid>xxx</wxsid>
-            <wxuin>xxx</wxuin>
-            <pass_ticket>xxx</pass_ticket>
-            <isgrayscale>1</isgrayscale>
-        </error>
-    '''
-    xml.dom
     doc = xml.dom.minidom.parseString(data)
     root = doc.documentElement
 
@@ -200,7 +185,7 @@ def webwxinit():
         SyncKeyList.append('%s_%s' % (item['Key'], item['Val']))
     SyncKey = '|'.join(SyncKeyList)
 
-    ErrMsg = dic['BaseResponse']['ErrMsg']
+    # ErrMsg = dic['BaseResponse']['ErrMsg']
 
     Ret = dic['BaseResponse']['Ret']
     if Ret != 0:

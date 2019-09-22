@@ -27,10 +27,14 @@ class BiliBili():
         """
         初始化
         """
-        self.browser = webdriver.Chrome()
+        options = webdriver.ChromeOptions()
+        # 设置为开发者模式，避免被识别
+        options.add_experimental_option('excludeSwitches',
+                                        ['enable-automation'])
+        self.browser = webdriver.Chrome(options=options)
         self.url = 'https://passport.bilibili.com/login'
         self.browser.get(self.url)
-        self.wait = WebDriverWait(self.browser, 5)
+        self.wait = WebDriverWait(self.browser, 5, 0.2)
         self.username = username
         self.password = password
 
@@ -214,7 +218,7 @@ class BiliBili():
 
 if __name__ == '__main__':
     ACCOUNT = input('请输入您的账号:')
-    PASSOWRD = input('请输入您的密码:')
+    PASSWORD = input('请输入您的密码:')
 
-    test = BiliBili(ACCOUNT, PASSOWRD)  # 输入账号和密码
+    test = BiliBili(ACCOUNT, PASSWORD)  # 输入账号和密码
     test.crack()
